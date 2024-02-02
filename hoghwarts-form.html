@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Hogwarts Registration Form</title>
+    <link rel="stylesheet" href="hogwarts-form.css">
+</head>
+
+<body>
+    <h1>Hogwarts Registration Form</h1>
+    <form class="fancy-form" id="hoghwarts-form" enctype="multipart/form-data" action="https://webhook.site/f22242af-644a-42f8-9f4e-8d891098b708">
+        <div>
+            <label for="name">Name</label>
+            <input type="text" name="name" id="name" required placeholder="e.g., Harry James Potter ">
+        </div>
+        <div>
+            <label for="dob">Date of birth</label>
+            <input type="date" name="dob" id="dob" required>
+        </div>
+        <div>
+            <label for="house">House</label>
+            <fieldset>
+                <div>
+                    <input type="radio" name="test" value="gryffindor">
+                    <label for="gryffindor">Gryffindor</label>
+                </div>
+                <div>
+                    <input type="radio" id="hufflepuff" name="test" value="test">
+                    <label for="hufflepuff">Hufflepuff</label>
+                </div>
+                <div>
+                    <input type="radio" id="ravenclaw" name="test" value="test">
+                    <label for="ravenclaw">Ravenclaw</label>
+                </div>
+                <div>
+                    <input type="radio" id="slytherin" name="test" value="test">
+                    <label for="slytherin">Slytherin</label>
+                </div>
+            </fieldset>
+        </div>
+        <div>
+            <label for="has-pet">I hereby state that I have a companion pet.</label>
+            <input type="checkbox" name="has-pet" id="has-pet" value="yes">
+            <fieldset class="conditional">
+                <legend>Companion pet</legend>
+                <label>Species<input type="text" name="pet-species" placeholder="e.g., owl"></label>
+                <label>Name<input type="text" name="pet-name" placeholder="e.g., Hedwig"></label>
+            </fieldset>
+        </div>
+        <div>
+            <label for="email">Email</label>
+            <input type="email" name="email" id="email" pattern=".+@hogwarts\.ac\.uk" placeholder="e.g., hjp@hogwarts.ac.uk" title="An email address ending with @hogwarts.ac.uk is required.">
+        </div>
+        <div>
+            <label for="wands">Varazspalcak szama</label>
+            <input type="number" name="wands" id="wands" min="0" max="10" value="1">
+        </div>
+        <div>
+            <label for="password">Jelszo</label>
+            <input type="text" name="password" id="password" required minlength="6" pattern="[a-zA-Z0-9]*([a-zA-Z][a-zA-Z0-9]*[0-9])|([0-9][a-zA-Z]*[a-zA-Z0-9]))[a-zA-Z0-9]" title="A jelszoban 6 vagy tobb angol kis- vagy nagybetu, illetve decimalis szamjegy kotelezo, betu es szam">
+        </div>
+        <div>
+            <label for="comments">Comments</label>
+            <textarea name="comments" id="comments" rows="5" maxlength="200" placeholder="e.g., I would like to be included in the quidditch team."></textarea>
+        </div>
+        <div>
+            <button type="submit">Submit</button>
+        </div>
+    </form>
+    <script>
+        const form = document.getElementById('hoghwarts-form');
+
+        function yearsElapsedSince(dateString) {
+            const date = new Date(dateString);
+            const diff = Date.now - date.getTime();
+            return new Date(diff).getUTCFullYear() - 1970;
+        }
+        consolo.log('Eletkor: ' + yearsElapsedSince('2003-11-09'));
+        form.dob.addEventListener('input', function(event) {
+            console.log("Szuletesi datum: " + form.dob.value);
+            const ageInYears = yearsElapsedSince(form.dob.value);
+            console.log('Eletkor: ' + ageInYears);
+            if (ageInYears <= 11) {
+                form.dob.SetCostumValidity('Tul fiatal vagy');
+            } else {
+                form.dob.SetCostumValidity('');
+            }
+        });
+    </script>
+</body>
+
+</html>
